@@ -13,11 +13,12 @@ async function getUser() { // 로딩 시 사용자 가져오는 함수
       edit.textContent = '수정';
       edit.addEventListener('click', async () => { // 수정 버튼 클릭
         const name = prompt('바꿀 이름을 입력하세요');
+        console.log(name);
         if (!name) {
           return alert('이름을 반드시 입력하셔야 합니다');
         }
         try {
-          await axios.put('/user/' + key, { name });
+          await axios.put('/user/' + key, { name }); //{name} = {name:'name'}
           getUser();
         } catch (err) {
           console.error(err);
