@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    {% include "header.html" %}
+
+    <h1>{{title}}</h1>
+    <p>welcome</p>
+    <button class="{{title}}">submit</button>
+    
+    <!-- 선언문 -->
+    {% set js = 'hello js' %}
+    <p> {{js}}</p>
+
+    <!-- if문 -->
+    {% if title =='Express' %}
+        <p>hello {{title}}</p>
+    {% else %}
+        <p>login</p>
+    {% endif %}
+
+    {{ '참' if title =='Express' }}
+
+
+    <p>{{'<strong> not escaped</strong>'| safe }}</p>
+</body>
+</html>
