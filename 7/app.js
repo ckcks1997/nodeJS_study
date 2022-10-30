@@ -3,9 +3,18 @@ const path = require('path')
 const morgan = require('morgan')
 const nunjucks = require('nunjucks')
 
-const {requelize, sequelize} = require('./models');
+const {sequelize} = require('./models');
+const indexRouter = require('./routes');
+const usersRouter = require('./routes/users');
+const commentsRouter = require('./routes/comments');
 
 const app = express();
+
+app.use(express.urlencoded({extended: false}));
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/comments', commentsRouter);
+
 app.set('port', 3001);
 app.set('view engine', 'html');
 nunjucks.configure('views', {

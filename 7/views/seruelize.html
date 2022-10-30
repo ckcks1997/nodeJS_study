@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form  id="user-form">
+            <fieldset>
+                <legend> 사용자 등록 </legend>
+                <div><input type="text" id="username" placeholder="name"></div>
+                <div><input type="text" id="age" placeholder="age"></div>
+                <div><input type="checkbox" id="married">married?</div>
+                <button type="submit">submit</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <br>
+    <table id="user-list">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>age</th>
+                <th>married?</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.age}}</td>
+                <td>{{'기혼' if user.married else '기혼'}}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    <br>
+    <div>
+        <form id="comment-form">
+            <fieldset>
+                <legend>댓글등록</legend>
+                <div><input type="text" id="userid" placeholder="id"></div>
+                <div><input type="text" id="comment" placeholder="reply"></div>
+                <button type="submit">submit</button>
+            </fieldset>
+        </form>
+    </div>
+    <br>
+    <table id="comment-list">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>writer</th>
+                <th>reply</th>
+                <th>modify</th>
+                <th>delete</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/sequelize.js"></script>
+</body>
+</html>
