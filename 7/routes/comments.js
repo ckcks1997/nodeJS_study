@@ -16,3 +16,29 @@ router.post('/', async (req, res, next) => {
     }
 });
 
+router.route('/:id')
+.patch(async (req, res, next) => {
+    try{
+        const result = await Comment.update({
+            comment: req.body.comment,
+        }, {
+            where: {id: req.params.id},
+        });
+        res.json(result);
+    } catch (error) {
+        console.error(error);
+        next(error)
+    }
+})
+.delete(async (req, res, next) => {
+    try {
+        const result = await Comment.destroy({where: {id: req.params.id}
+        });
+        res.json(result);
+    } catch (error) {
+        console.error(error);
+        next(error)
+    }
+})
+
+module.exports = router;
