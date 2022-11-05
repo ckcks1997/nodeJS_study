@@ -10,11 +10,6 @@ const commentsRouter = require('./routes/comments');
 
 const app = express();
 
-app.use(express.urlencoded({extended: false}));
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/comments', commentsRouter);
-
 app.set('port', 3001);
 app.set('view engine', 'html');
 nunjucks.configure('views', {
@@ -22,18 +17,23 @@ nunjucks.configure('views', {
     watch: true,
 });
 sequelize.sync({force: false})
-    .then(() => {
-        console.log("db connected")
-    })
-    .catch((err) =>{
-        console.log(err)
-    });
+.then(() => {
+    console.log("db connected")
+})
+.catch((err) =>{
+    console.log(err)
+});
+app.use(express.urlencoded({extended: false}));
+
 
 app.use(morgan(('dev')))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json())
 app.use(express.urlencoded({extended: false}));
 
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/comments', commentsRouter);
 app.use((req, res, next) =>{
     res.locals.message = err.message;
     res.locals.error = err;

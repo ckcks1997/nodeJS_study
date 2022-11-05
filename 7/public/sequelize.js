@@ -108,6 +108,7 @@ document.getElementById('user-form')
     const name = e.target.username.value;
     const age = e.target.age.value;
     const married = e.target.married.checked;
+    console.log(married)
     if(!name){
         return alert('이름 입력:');
     }

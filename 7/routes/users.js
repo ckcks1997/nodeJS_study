@@ -17,11 +17,13 @@ router.route('/')
 
 .post(async (req, res, next) => {
     try {
+        console.log(req.body);
         const user = await User.create({
             name: req.body.name,
             age: req.body.age,
             married: req.body.married
         });
+        console.log('------')
         console.log(user);
         res.status(201).json(user);
     } catch (error) {
